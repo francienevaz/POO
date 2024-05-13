@@ -7,10 +7,12 @@ public class App {
 
         julia.setNota1(7);
         julia.setNota2(3);
+        julia.setFaltas(4);
 
         julia.resultado();
 
         julia.setNota2(8);
+        julia.setFaltas(8);
 
         julia.resultado();
     }
