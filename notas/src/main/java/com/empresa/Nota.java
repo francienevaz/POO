@@ -11,9 +11,9 @@ public class Nota {
 
     //  ao criar o construtor aqui, podemos passar os valores por parâmetro quando chamamos a função Nota
     public Nota(double n1, double n2, int falta) {
-        this.nota1 = n1;
-        this.nota2 = n2;
-        this.Falta = falta;
+        setNota1(n1);
+        setNota2(n2);
+        setFaltas(falta);
     }
 
     public void setNota1(double nota){
@@ -63,7 +63,7 @@ public class Nota {
         if (Falta > 7) {
             System.out.println("Reprovado por faltas!");
         } else {
-             double media = (nota1 + nota2) / 2;
+            double media = (nota1 + nota2) / 2;
 
             if(media < 4) {
                 System.out.println("Reprovado");
