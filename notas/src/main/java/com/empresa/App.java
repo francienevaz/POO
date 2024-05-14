@@ -5,6 +5,12 @@ public class App {
         // write your code here
         Nota julia = new Nota();
 
+        Nota marcos = new Nota(9, 6, 5);
+
+        System.out.println("Média Marcos: " );
+        marcos.resultado();
+        System.out.println();
+
         julia.setNota1(7);
         julia.setNota2(3);
         julia.setFaltas(4);

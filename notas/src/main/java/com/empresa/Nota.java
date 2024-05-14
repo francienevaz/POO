@@ -3,7 +3,18 @@ package com.empresa;
 public class Nota {
     private double nota1;
     private double nota2;
-    public int Falta;
+    private int Falta;
+
+    public Nota(){
+
+    }
+
+    //  ao criar o construtor aqui, podemos passar os valores por parâmetro quando chamamos a função Nota
+    public Nota(double n1, double n2, int falta) {
+        this.nota1 = n1;
+        this.nota2 = n2;
+        this.Falta = falta;
+    }
 
     public void setNota1(double nota){
         if (nota < 0 || nota > 10) {
@@ -36,6 +47,10 @@ public class Nota {
         return status;
     }
 
+    public int getFaltas() {
+        return Falta;
+    }
+
     public double getNota1(){
         return nota1;
     }
@@ -55,6 +70,7 @@ public class Nota {
             } else if (media < 7) {
                 System.out.println("Em exame");
             } else {
+                System.out.println(String.format("Média: %s", media));
                 System.out.println("Aprovado");
             }
         }       
