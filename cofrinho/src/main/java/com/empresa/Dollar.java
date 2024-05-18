@@ -5,6 +5,10 @@ public class Dollar extends Coin {
         super(value);
     }
 
+    public void info() {
+        System.out.println("Dollar: " + value);
+    }
+
     // Implementação específica de conversão para dólar
     public double convertToDollar(Coin otherCoin) {
         return otherCoin.getValue() / this.getValue();

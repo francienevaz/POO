@@ -3,49 +3,22 @@ package com.empresa;
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        // Menu menu = new Menu();
+        // menu.exibirMenuPrincipal();
 
-        Cofrinho cofrinho = new Cofrinho(); // Criar uma instância da classe Cofrinho
+        Cofrinho cofrinho = new Cofrinho();
+        cofrinho.listCoins();
 
-        boolean sair = false;
-        while (!sair) {
-            System.out.println("Bem-vindo ao Cofrinho");
-            System.out.println("Escolha uma opção:");
-            System.out.println("1 - Adicionar Moedas");
-            System.out.println("2 - Remover Moedas");
-            System.out.println("3 - Listar todas as Moedas");
-            System.out.println("4 - Converter para Real");
-            System.out.println("5 - Sair");
+        Real doisReais = new Real(2);
+        Dollar cincoDolares = new Dollar(5);
+        Euro vinteEcincoEuros = new Euro(25);
+        Real treReais = new Real(3);
 
-            int opcao = scanner.nextInt();
+        cofrinho.addCoin(doisReais);
+        cofrinho.addCoin(cincoDolares);
+        cofrinho.addCoin(vinteEcincoEuros);
+        cofrinho.addCoin(treReais);
+        cofrinho.listCoins();
 
-            switch (opcao) {
-                case 1:
-                    System.out.println("Digite o valor da moeda:");
-                    float valor = scanner.nextFloat();
-                    cofrinho.addCoin(valor); // Chamar o método addCoin da instância de Cofrinho
-                    break;
-                case 2:
-                    System.out.println("Digite o valor da moeda a ser removida:");
-                    float valorRemover = scanner.nextFloat();
-                    cofrinho.removeCoin(valorRemover); // Chamar o método removeCoin da instância de Cofrinho
-                    break;
-                case 3:
-                    cofrinho.listCoins(); // Chamar o método listCoins da instância de Cofrinho
-                    break;
-                case 4:
-                    cofrinho.convertToReal(); // Chamar o método convertToReal da instância de Cofrinho
-                    break;
-                case 5:
-                    // Encerra o programa
-                    sair = true;
-                    break;
-                default:
-                    System.out.println("Digite uma opção válida!");
-                    break;
-            }
-        }
-
-        scanner.close();
     }
 }

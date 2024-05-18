@@ -4,26 +4,26 @@ import java.util.ArrayList;
 
 public class Cofrinho {
     
-    private ArrayList<Float> coins = new ArrayList<>(); // Renomeie para coins em vez de Coin
+    private ArrayList<Coin> coins = new ArrayList<>(); // Renomeie para coins em vez de Coin
 
-    public void addCoin(float coin) {
+    public void addCoin(Coin coin) {
         coins.add(coin); // Adiciona a moeda à lista
-        System.out.println("Moeda adicionada: " + coin);
+        System.out.println("Moeda adicionada: " + coin.getValue());
     }
 
-    public void removeCoin(float coin) {
+    public void removeCoin(Coin coin) {
         coins.remove(coin); // Remove a moeda da lista
-        System.out.println("Moeda removida: " + coin);
+        System.out.println("Moeda removida: " + coin.getValue());
     }
 
     public void listCoins() {
         System.out.println("Moedas no cofrinho:");
-        for (float coin : coins) {
-            System.out.println(coin);
+        for (Coin coin : coins) {
+            System.out.println(coin.getValue());
         }
     }
 
-    public void convertToReal() {
+    public void convertTo() {
         System.out.println("Convertendo para Real...");
         // Lógica para converter moedas para Real
     }

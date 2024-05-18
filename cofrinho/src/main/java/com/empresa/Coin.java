@@ -1,6 +1,6 @@
 package com.empresa;
 
-public class Coin {
+public abstract class Coin {
     protected double value;
 
     public Coin(double value) {
@@ -11,7 +11,7 @@ public class Coin {
         return value;
     }
 
-    public void displayCoin() {
+    public void info() {
         System.out.println("Valor da moeda: " + value);
     }
 

@@ -5,6 +5,9 @@ public class Euro extends Coin {
         super(value);
     }
 
+    public void info() {
+        System.out.println("Euro: " + value);
+    }
     // Implementação específica de conversão para euro
     public double convertToEuro(Coin otherCoin) {
         return otherCoin.getValue() / this.getValue();
