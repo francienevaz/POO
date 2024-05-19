@@ -5,16 +5,14 @@ import java.util.ArrayList;
 public class Cofrinho {
 
     private ArrayList<Moeda> moedas; 
-    private double valor;
+    // private double valor;
 
     public Cofrinho() {
         this.moedas = new ArrayList<Moeda>();
-        this.valor = 0.0;
     }     
 
     public void addMoeda(Moeda moeda) {
         moedas.add(moeda);
-        this.valor += moeda.getValor();
         System.out.println("Moeda adicionada: " + moeda.getValor());
     }
 
