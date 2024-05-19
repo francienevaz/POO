@@ -15,9 +15,5 @@ public abstract class Moeda {
         System.out.println("Valor da moeda: " + valor);
     }
 
-    public double converterPara(Moeda outraMoeda) {
-        return this.valor / outraMoeda.valor;
-    }
-
     public abstract double converter();
 }
