@@ -1,16 +1,16 @@
 package com.empresa;
 
-public class Euro extends Moeda {
-    public Euro(double valor) {
+public class Dolar extends Moeda {
+    public Dolar(double valor) {
         super(valor);
     }
 
     public void info() {
-        System.out.println("Euro: " + valor);
+        System.out.println("Dólar: " + valor);
     }
 
     public double converter() {
-        return this.valor * 5.55;
+        return this.valor * 5.1;
     }
 
     @Override
@@ -19,9 +19,9 @@ public class Euro extends Moeda {
             return false;
         }
 
-        Euro objetoEuro = (Euro) objeto;
+        Dolar objetoDolar = (Dolar) objeto;
 
-        if (this.valor!= objetoEuro.valor ) {
+        if (this.valor!= objetoDolar.valor ) {
             return false;
         }
         

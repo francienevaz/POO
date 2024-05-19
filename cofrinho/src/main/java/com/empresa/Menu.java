@@ -37,7 +37,7 @@ public class Menu {
                     exibirSubMenuRemoverMoedas();
                     break;
                 case 3:
-                    cofrinho.listCoins();
+                    cofrinho.listMoedas();
                     break;
                 case 4: 
                     double valorTotalConvertido = cofrinho.totalConvertido();
@@ -71,26 +71,30 @@ public class Menu {
         valorMoeda = valorMoeda.replace(",", ".");
         double valorMoedaConvertida = Double.parseDouble(valorMoeda);
 
-        Coin moeda = null;
+        Moeda moeda = null;
 
-        switch (opcaoMoeda) {
-            case 1:
-                moeda = new Real(valorMoedaConvertida);
-                break;
-            case 2:
-                moeda = new Dollar(valorMoedaConvertida);
-                break;
-            case 3:
-                moeda = new Euro(valorMoedaConvertida);
-                break;
-            default:
-                System.out.println("Opção inválida");
-                break;
+        try {
+            switch (opcaoMoeda) {
+                case 1:
+                    moeda = new Real(valorMoedaConvertida);
+                    break;
+                case 2:
+                    moeda = new Dolar(valorMoedaConvertida);
+                    break;
+                case 3:
+                    moeda = new Euro(valorMoedaConvertida);
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
+
+            cofrinho.addMoeda(moeda);
+            moeda.info();
+            System.out.println("Moeda adicionada com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao adicionar moeda: " + e.getMessage());
         }
-
-        cofrinho.addCoin(moeda);
-        moeda.info();
-        System.out.println("Moeda adicionada com sucesso!");
     }
 
     private void exibirSubMenuRemoverMoedas() {
@@ -106,28 +110,31 @@ public class Menu {
         valorMoeda = valorMoeda.replace(",", ".");
         double valorMoedaConvertida = Double.parseDouble(valorMoeda);
 
-        Coin moeda = null;
+        Moeda moeda = null;
 
-        switch (opcaoMoeda) {
-            case 1:
-                moeda = new Real(valorMoedaConvertida);
-                break;
-            case 2:
-                moeda = new Dollar(valorMoedaConvertida);
-                break;
-            case 3:
-                moeda = new Euro(valorMoedaConvertida);
-                break;
-            default:
-                System.out.println("Opção inválida");
-                break;
-        }
+        try {
+            switch (opcaoMoeda) {
+                case 1:
+                    moeda = new Real(valorMoedaConvertida);
+                    break;
+                case 2:
+                    moeda = new Dolar(valorMoedaConvertida);
+                    break;
+                case 3:
+                    moeda = new Euro(valorMoedaConvertida);
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
 
-        if (cofrinho.removeCoin(moeda)) {
-            System.out.println("Moeda removida com sucesso!");
-        } else {
-            System.out.println("Moeda não encontrada!");
+            if (cofrinho.removerMoeda(moeda)) {
+                System.out.println("Moeda removida com sucesso!");
+            } else {
+                System.out.println("Moeda não encontrada!");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao remover moeda: " + e.getMessage());
         }
     }
 }
-

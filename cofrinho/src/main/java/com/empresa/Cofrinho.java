@@ -1,83 +1,48 @@
 package com.empresa;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Cofrinho {
 
-    private ArrayList<Coin> coinsList; 
-    private double value;
+    private ArrayList<Moeda> moedas; 
+    private double valor;
 
     public Cofrinho() {
-        this.coinsList = new ArrayList<Coin>();
-        this.value = 0.0;
+        this.moedas = new ArrayList<Moeda>();
+        this.valor = 0.0;
     }     
 
-    public void addCoin(Coin coin) {
-        coinsList.add(coin);
-        this.value += coin.getValue();
-        System.out.println("Moeda adicionada: " + coin.getValue());
+    public void addMoeda(Moeda moeda) {
+        moedas.add(moeda);
+        this.valor += moeda.getValor();
+        System.out.println("Moeda adicionada: " + moeda.getValor());
     }
 
-    public boolean removeCoin(Coin coin) {
-        return this.coinsList.remove(coin);
+    public boolean removerMoeda(Moeda moeda) {
+        return this.moedas.remove(moeda);
     }
 
-    public void listCoins() {   
-        if (this.coinsList.isEmpty()) {
+    public void listMoedas() {   
+        if (this.moedas.isEmpty()) {
             System.out.println("Não há moedas no cofrinho.");
             return;
         } else {
             System.out.println("Moedas no cofrinho:");
-            for (Coin coin : coinsList) {
-                coin.info();
-                System.out.println(coin.getValue());
+            for (Moeda moeda : moedas) {
+                moeda.info();
+                System.out.println(moeda.getValor());
             }
         }        
     }
 
-    public double convertTo(Coin otherCoin) {
-    
-        if (otherCoin instanceof Dollar) {
-            return convertToDollar(otherCoin);
-        } else if (otherCoin instanceof Real) {
-            return convertToReal(otherCoin);
-        } else if (otherCoin instanceof Euro) {
-            return convertToEuro(otherCoin);
-        } else {
-            return this.value / otherCoin.value;
-        }
-    }
-
-    public double convertToDollar(Coin otherCoin) {
-        double resultado = otherCoin.getValue() / this.value;
-        resultado = Math.round(resultado * 100.0) / 100.0;
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(resultado));
-    }
-
-    public double convertToReal(Coin otherCoin) {
-        double resultado = otherCoin.getValue() / this.value;
-        resultado = Math.round(resultado * 100.0) / 100.0;
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(resultado));
-    }
-
-    public double convertToEuro(Coin otherCoin) {
-        double resultado = this.value / otherCoin.getValue();
-        resultado = Math.round(resultado * 100.0) / 100.0;
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(resultado));
-    }
-
     public double totalConvertido() {
-        if (this.coinsList.isEmpty()){
+        if (this.moedas.isEmpty()){
             return 0.0;
         }
         double total = 0.0;
 
-        for (Coin coin : coinsList) {
-            total += coin.convert();
+        for (Moeda moeda : moedas) {
+            total += moeda.converter();
             }
 
         return total;

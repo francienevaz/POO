@@ -1,31 +1,29 @@
 package com.empresa;
 
-public class Real extends Coin {
-    public Real(double value) {
-        super(value);
+public class Real extends Moeda {
+    public Real(double valor) {
+        super(valor);
     }
 
     public void info() {
-        System.out.println("Real: " + value);
+        System.out.println("Real: " + valor);
     }
 
-    public double convert(){
-        return this.value;
+    public double converter(){
+        return this.valor;
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this.getClass() != object.getClass()) {
+    public boolean equals(Object objeto) {
+        if (this.getClass()!= objeto.getClass()) {
             return false;
         }
 
-        Real objectReal = (Real) object;
+        Real objetoReal = (Real) objeto;
 
-        if (this.value != objectReal.value ) {
+        if (this.valor!= objetoReal.valor ) {
             return false;
         }
-
         return true;
     }
-
 }
