@@ -77,36 +77,34 @@ public class Menu {
             String valorMoeda = sc.next();
     
             if (!valorMoeda.isEmpty()) {
-                valorMoeda = valorMoeda.replace(",", ".");
-                double valor;
-    
                 try {
-                    valor = Double.parseDouble(valorMoeda);
+                    valorMoeda = valorMoeda.replace(",", ".");
+                    double valor = Double.parseDouble(valorMoeda);
+    
+                    Moeda moeda = null;
+    
+                    switch (opcaoMoeda) {
+                        case 1:
+                            moeda = new Real(valor);
+                            break;
+                        case 2:
+                            moeda = new Dolar(valor);
+                            break;
+                        case 3:
+                            moeda = new Euro(valor);
+                            break;
+                        default:
+                            System.out.println("Opção inválida");
+                            break;
+                    }
+    
+                    if (moeda != null) {
+                        cofrinho.addMoeda(moeda);
+                        moeda.info();
+                        System.out.println("Moeda adicionada com sucesso!");
+                    }
                 } catch (NumberFormatException e) {
-                    System.out.println("Valor inválido!");
-                    return;
-                }
-    
-                Moeda moeda = null;
-    
-                switch (opcaoMoeda) {
-                    case 1:
-                        moeda = new Real(valor);
-                        break;
-                    case 2:
-                        moeda = new Dolar(valor);
-                        break;
-                    case 3:
-                        moeda = new Euro(valor);
-                        break;
-                    default:
-                        System.out.println("Opção inválida");
-                        break;
-                }
-    
-                if (moeda != null) {
-                    cofrinho.addMoeda(moeda);
-                    System.out.println("Moeda adicionada com sucesso!");
+                    System.out.println("Valor inválido! Digite um número válido.");
                 }
             } else {
                 System.out.println("Digite um valor!");
