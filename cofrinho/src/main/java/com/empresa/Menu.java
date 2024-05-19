@@ -1,67 +1,52 @@
 package com.empresa;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Menu {
 
     private Scanner sc;
+    private Cofrinho cofrinho;
 
     public Menu() {
         sc = new Scanner(System.in);
+        cofrinho = new Cofrinho();        
     }
 
     public void exibirMenuPrincipal() {
-        Cofrinho cofrinho = new Cofrinho(); // Criar uma instância da classe Cofrinho
-
+        
+        System.out.println("Bem-vindo ao Cofrinho");
+        
         boolean sair = false;
         while (!sair) {
-            System.out.println("Bem-vindo ao Cofrinho");
+            
             System.out.println("Escolha uma opção:");
             System.out.println("1 - Adicionar Moedas");
             System.out.println("2 - Remover Moedas");
             System.out.println("3 - Listar todas as Moedas");
-            System.out.println("4 - Converter para Real");
-            System.out.println("5 - Converter para Dolar");
-            System.out.println("6 - Converter para Euro");
-            System.out.println("7 - Encerrar sessão");
+            System.out.println("4 - Converter total do cofrinho para Real");
+            System.out.println("5 - Encerrar sessão");
 
             int opcao = sc.nextInt();
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o valor da moeda:");
-                    float valor = sc.nextFloat();
-                    Real moeda = new Real(valor);
-                    cofrinho.addCoin(moeda); // Chamar o método addCoin da instância de Cofrinho
+                    exibirSubMenuAdicionarMoedas();
                     break;
                 case 2:
-                    System.out.println("Digite o valor da moeda a ser removida:");
-                    float valorRemover = sc.nextFloat();
-                    Real moedaRemovida = new Real(valorRemover); // Crie um objeto Real com o valor digitado
-                    cofrinho.removeCoin(moedaRemovida); // Chame o método removeCoin com o objeto Real
+                    exibirSubMenuRemoverMoedas();
                     break;
                 case 3:
-                    cofrinho.listCoins(); // Chamar o método listCoins da instância de Cofrinho
+                    cofrinho.listCoins();
                     break;
-                case 4:
-                    System.out.println("Convertendo para Real...");
-                    Coin real = new Real(1); // Crie um objeto Real com o valor de 1 real
-                    double resultado = cofrinho.convertTo(real); // Chame o método convertTo com o objeto Real
-                    System.out.println("Valor em reais: " + resultado);
+                case 4: 
+                    double valorTotalConvertido = cofrinho.totalConvertido();
+                    double resultado = Math.round(valorTotalConvertido * 100.0) / 100.0;
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    Double.parseDouble(df.format(resultado));
+                    System.out.println("Valor total convertido para Real: " + resultado);
                     break;
                 case 5:
-                    System.out.println("Convertendo para Dólar...");
-                    Coin dollar = new Dollar(1); // Crie um objeto Dollar com o valor de 1 dólar
-                    double resultadoDollar = cofrinho.convertTo(dollar); // Armazena o resultado da conversão
-                    System.out.println("Valor em dólares: " + resultadoDollar); // Exibe o valor convertido
-                    break;
-                case 6:
-                    System.out.println("Convertendo para Euro...");
-                    Coin euro = new Euro(1); // Crie um objeto Euro com o valor de 1 euro
-                    cofrinho.convertTo(euro); // Chame o método convertTo com o objeto Euro
-                    break;
-                case 7:
-                    // Encerra o programa
                     System.out.println("Saindo...");
                     sair = true;
                     break;
@@ -73,4 +58,76 @@ public class Menu {
         sc.close();
     }    
 
+    private void exibirSubMenuAdicionarMoedas() {
+        System.out.println("Escolha a moeda:");
+        System.out.println("1 - Real:");
+        System.out.println("2 - Dolar:");
+        System.out.println("3 - Euro:");
+
+        int opcaoMoeda = sc.nextInt();
+
+        System.out.println("Digite um valor: ");
+        String valorMoeda = sc.next();
+        valorMoeda = valorMoeda.replace(",", ".");
+        double valorMoedaConvertida = Double.parseDouble(valorMoeda);
+
+        Coin moeda = null;
+
+        switch (opcaoMoeda) {
+            case 1:
+                moeda = new Real(valorMoedaConvertida);
+                break;
+            case 2:
+                moeda = new Dollar(valorMoedaConvertida);
+                break;
+            case 3:
+                moeda = new Euro(valorMoedaConvertida);
+                break;
+            default:
+                System.out.println("Opção inválida");
+                break;
+        }
+
+        cofrinho.addCoin(moeda);
+        moeda.info();
+        System.out.println("Moeda adicionada com sucesso!");
+    }
+
+    private void exibirSubMenuRemoverMoedas() {
+        System.out.println("Escolha a moeda:");
+        System.out.println("1 - Real:");
+        System.out.println("2 - Dolar:");
+        System.out.println("3 - Euro:");
+
+        int opcaoMoeda = sc.nextInt();
+
+        System.out.println("Digite um valor: ");
+        String valorMoeda = sc.next();
+        valorMoeda = valorMoeda.replace(",", ".");
+        double valorMoedaConvertida = Double.parseDouble(valorMoeda);
+
+        Coin moeda = null;
+
+        switch (opcaoMoeda) {
+            case 1:
+                moeda = new Real(valorMoedaConvertida);
+                break;
+            case 2:
+                moeda = new Dollar(valorMoedaConvertida);
+                break;
+            case 3:
+                moeda = new Euro(valorMoedaConvertida);
+                break;
+            default:
+                System.out.println("Opção inválida");
+                break;
+        }
+
+        if (cofrinho.removeCoin(moeda)) {
+            System.out.println("Moeda removida com sucesso!");
+        } else {
+            System.out.println("Moeda não encontrada!");
+        }
+    }
 }
+

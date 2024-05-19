@@ -9,8 +9,23 @@ public class Real extends Coin {
         System.out.println("Real: " + value);
     }
 
-    // public double convertToReal(Coin otherCoin) {
-    //     return otherCoin.getValue() / this.getValue();
-    // }
+    public double convert(){
+        return this.value;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this.getClass() != object.getClass()) {
+            return false;
+        }
+
+        Real objectReal = (Real) object;
+
+        if (this.value != objectReal.value ) {
+            return false;
+        }
+
+        return true;
+    }
 
 }

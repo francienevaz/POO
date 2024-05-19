@@ -5,29 +5,35 @@ import java.util.ArrayList;
 
 public class Cofrinho {
 
-    private ArrayList<Coin> coins = new ArrayList<>(); // Renomeie para coins em vez de Coin
-    private double value; // Defina a variável value
+    private ArrayList<Coin> coinsList; 
+    private double value;
 
     public Cofrinho() {
-        this.value = 0.0; // Inicializa a variável value com zero
+        this.coinsList = new ArrayList<Coin>();
+        this.value = 0.0;
     }     
 
     public void addCoin(Coin coin) {
-        coins.add(coin); // Adiciona a moeda à lista
-        this.value += coin.getValue(); // Atualiza o valor do campo value na classe Coin
+        coinsList.add(coin);
+        this.value += coin.getValue();
         System.out.println("Moeda adicionada: " + coin.getValue());
     }
 
-    public void removeCoin(Coin coin) {
-        coins.remove(coin); // Remove a moeda da lista
-        System.out.println("Moeda removida: " + coin.getValue());
+    public boolean removeCoin(Coin coin) {
+        return this.coinsList.remove(coin);
     }
 
-    public void listCoins() {
-        System.out.println("Moedas no cofrinho:");
-        for (Coin coin : coins) {
-            System.out.println(coin.getValue());
-        }
+    public void listCoins() {   
+        if (this.coinsList.isEmpty()) {
+            System.out.println("Não há moedas no cofrinho.");
+            return;
+        } else {
+            System.out.println("Moedas no cofrinho:");
+            for (Coin coin : coinsList) {
+                coin.info();
+                System.out.println(coin.getValue());
+            }
+        }        
     }
 
     public double convertTo(Coin otherCoin) {
@@ -62,5 +68,18 @@ public class Cofrinho {
         resultado = Math.round(resultado * 100.0) / 100.0;
         DecimalFormat df = new DecimalFormat("#.##");
         return Double.parseDouble(df.format(resultado));
+    }
+
+    public double totalConvertido() {
+        if (this.coinsList.isEmpty()){
+            return 0.0;
+        }
+        double total = 0.0;
+
+        for (Coin coin : coinsList) {
+            total += coin.convert();
+            }
+
+        return total;
     }
 }

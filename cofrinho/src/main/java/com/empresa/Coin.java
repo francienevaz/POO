@@ -18,4 +18,6 @@ public abstract class Coin {
     public double convertTo(Coin otherCoin) {
         return this.value / otherCoin.value;
     }
+
+    public abstract double convert();
 }
