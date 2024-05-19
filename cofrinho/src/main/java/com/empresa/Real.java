@@ -12,6 +12,13 @@ public class Real extends Moeda {
     public double converter(){
         return this.valor;
     }
+    
+    /**
+     * Verifica se dois objetos Real são iguais em valor.
+     *
+     * @param objeto O objeto a ser comparado.
+     * @return `true` se os objetos forem iguais, ou `false` caso contrário.
+     */
 
     @Override
     public boolean equals(Object objeto) {

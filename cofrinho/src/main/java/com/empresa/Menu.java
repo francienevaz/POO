@@ -113,8 +113,7 @@ public class Menu {
             System.out.println("Digite uma opção válida!");
             sc.nextLine();
         }
-    }
-    
+    }    
 
     private void exibirSubMenuRemoverMoedas() {
         System.out.println("Escolha a moeda:");
@@ -159,7 +158,6 @@ public class Menu {
         }   else {
             System.out.println("Digite uma opção válida!");
             sc.nextLine();
-        }
-        
+        }        
     }
 }

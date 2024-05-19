@@ -11,9 +11,7 @@ public abstract class Moeda {
         return valor;
     }
 
-    public void info() {
-        System.out.println("Valor da moeda: " + valor);
-    }
+    public abstract void info();
 
     public abstract double converter();
 }
