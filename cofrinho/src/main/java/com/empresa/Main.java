@@ -1,5 +1,7 @@
 package com.empresa;
 // import java.util.*;
+// falta fazer os inputs do usuário, configurar para inputs no switch case
+
 public class Main {
     public static void main(String[] args) {
         // Menu menu = new Menu();
