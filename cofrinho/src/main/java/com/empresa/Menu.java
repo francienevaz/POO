@@ -15,7 +15,7 @@ public class Menu {
 
     public void exibirMenuPrincipal() {
         
-        System.out.println("Bem-vindo ao Cofrinho");
+        System.out.println("Bem-vindo ao Cofrinho - (Franciene Vaz - 4603354)");
         
         boolean sair = false;
         while (!sair) {
